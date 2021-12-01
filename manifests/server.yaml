@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wintcpserver
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"  
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    run: wintcpserver
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: wintcpserver
+  name: wintcpserver
+spec:
+  nodeSelector:
+    "kubernetes.io/os": windows
+  containers:
+  - image: stevegriffith/wintcptester:1809
+    name: wintcptester
+    command: [ "powershell.exe" ]
+    args: [ "./dotnettcp.exe", "8000" ]
+    ports:
+    - containerPort: 8000
+  restartPolicy: Never
