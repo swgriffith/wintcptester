@@ -26,7 +26,7 @@ spec:
   - image: stevegriffith/wintcptester:1809
     name: wintcptester
     command: [ "powershell.exe" ]
-    args: [ "./dotnettcp.exe", "8000" ]
+    args: [ "./dotnettcp.exe", "127.0.0.1", "8000" ]
     ports:
     - containerPort: 8000
   restartPolicy: Never

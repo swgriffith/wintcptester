@@ -12,7 +12,8 @@ public class TcpTimeServer
     public static int Main(String[] args)
     {
         bool done = false;
-        var listener = new TcpListener(IPAddress.Any, int.Parse(args[0]));
+        
+        var listener = new TcpListener(IPAddress.Parse(args[0]), int.Parse(args[1]));
         listener.Start();
         while (!done)
         {
