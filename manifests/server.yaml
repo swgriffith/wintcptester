@@ -23,10 +23,12 @@ spec:
   nodeSelector:
     "kubernetes.io/os": windows
   containers:
-  - image: stevegriffith/wintcptester:1809
+  - image: stevegriffith/wintcptester:1809v2
     name: wintcptester
     command: [ "powershell.exe" ]
-    args: [ "./dotnettcp.exe", "127.0.0.1", "8000" ]
+    args: [ "./dotnettcp.exe", "0.0.0.0", "8000" ]
+    # The following does not work
+    #args: [ "./dotnettcp.exe", "127.0.0.1", "8000" ]
     ports:
     - containerPort: 8000
   restartPolicy: Never
