@@ -6,4 +6,7 @@ WORKDIR /apps
 COPY ./dotnettcp/binaries/dotnettcp.exe .
 COPY ./dotnettcp-sender/binaries/dotnettcp-sender.exe .
 
+COPY .winsock/binaries/Client.exe .
+COPY .winsock/binaries/Server.exe .
+
 ENTRYPOINT powershell.exe 
